@@ -223,11 +223,16 @@ export default function AgentRunner({ agent }) {
         output: result.content,
         provider: actualProvider,
       });
-    } catch (err) {
-      if (err.name !== "AbortError") {
-        setError(err.message);
-      }
-    } finally {
+   } catch (err) {
+  if (err.name !== "AbortError") {
+    // If the error is our structured invalid-api-key error, pass it directly
+    if (err && err.type === "invalid_api_key") {
+      setError(err);
+    } else {
+      setError({ type: "generic", message: err.message });
+    }
+  }
+} finally {
       setLoading(false);
       abortControllerRef.current = null;
     }
@@ -606,7 +611,41 @@ export default function AgentRunner({ agent }) {
         )}
       </div>
 
-      {error && <ErrorCard message={error} />}
+      {error && error.type === "invalid_api_key" ? (
+  <ErrorCard message={
+    <>
+      <strong>
+        {error.provider === "openai" && "Your OpenAI API key is invalid or expired."}
+        {error.provider === "anthropic" && "Your Anthropic API key is invalid or expired."}
+        {error.provider === "gemini" && "Your Google Gemini API key is invalid or expired."}
+        {!["openai", "anthropic", "gemini"].includes(error.provider) && "Your API key is invalid or expired."}
+      </strong>
+      <br />
+      Please check and update your API key.<br />
+      <button
+        className="underline text-accent"
+        onClick={() => window.dispatchEvent(new CustomEvent("open-api-key-bar"))}
+      >
+        Update API Key
+      </button>
+      <span> or </span>
+      <button
+        className="underline text-accent"
+        onClick={() => window.location.reload()}
+      >
+        Retry
+      </button>
+      {error.detail && (
+        <>
+          <br /><br />
+          <span className="text-xs text-gray-400">Details: {error.detail}</span>
+        </>
+      )}
+    </>
+  } />
+) : (
+  error && <ErrorCard message={error.message || error} />
+)}
 
       {loading && !isStreaming && (
         <div className="rounded-lg border p-6 dark:bg-surface-card dark:border-border bg-white border-gray-200 text-center animate-fade-in">

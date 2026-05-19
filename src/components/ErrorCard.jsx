@@ -32,9 +32,7 @@ export default function ErrorCard({ message }) {
           }`}>
             {color === 'error' ? 'Error' : 'Warning'}
           </h4>
-          <p className="text-xs dark:text-text-secondary text-gray-600 leading-relaxed whitespace-pre-wrap">
-            {message}
-          </p>
+          <p className="text-xs ...">{typeof message === "string" ? message : message}</p>
         </div>
       </div>
     </div>
