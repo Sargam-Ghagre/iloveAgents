@@ -6,6 +6,7 @@ import AgentCard from '../components/AgentCard'
 import { useFavorites } from '../lib/useFavorites'
 import { useHistory } from '../lib/useHistory'
 import RecentRuns from '../components/RecentRuns'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 // Derive unique sorted categories from the registry
 const allCategories = [...new Set(agents.map((a) => a.category))].sort()
@@ -31,6 +32,7 @@ export default function HomePage() {
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState(null)
+  useDocumentTitle()
   
   const { favorites } = useFavorites()
   const { history, deleteRun, clearHistory } = useHistory()

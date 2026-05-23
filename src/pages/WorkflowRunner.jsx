@@ -22,6 +22,7 @@ import { runAgent } from '../lib/llmAdapter'
 import { resolveAgentModel, MODEL_MAP } from '../lib/resolveAgentModel'
 import { fetchWorkflowById, incrementUsage } from '../hooks/useWorkflows'
 import { exportWorkflowAsMarkdown } from '../lib/exportMarkdown'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 const STATUS_COLORS = {
   waiting: 'dark:text-text-muted text-gray-400',
@@ -90,6 +91,7 @@ export default function WorkflowRunner() {
   const [steps, setSteps] = useState([])
   const [allDone, setAllDone] = useState(false)
   const [hasRun, setHasRun] = useState(false)
+  useDocumentTitle(workflow?.title ? `Run ${workflow.title}` : 'Run Workflow')
 
   // Fetch workflow if not passed via state
   useEffect(() => {
