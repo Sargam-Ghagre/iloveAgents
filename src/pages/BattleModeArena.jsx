@@ -8,6 +8,8 @@ import {
   ArrowLeft,
   ChevronDown,
   ChevronRight,
+  Copy,
+  Check,
 } from "lucide-react";
 import { runAgent } from "../lib/llmAdapter";
 import BattleNavbar from "../components/BattleNavbar";
@@ -90,6 +92,8 @@ export default function BattleModeArena() {
     gemini: null,
   });
 
+  const [copiedProvider, setCopiedProvider] = useState(null);
+
   // Redirect if no state
   useEffect(() => {
     if (!agent || !inputs || !apiKeys) {
@@ -156,6 +160,15 @@ export default function BattleModeArena() {
     });
   };
 
+  const handleCopyPrompt = (providerId, promptData) => {
+    const copyText = `System Prompt: ${promptData?.systemPrompt || "Not available"}\n\nUser Prompt: ${promptData?.userMessage || "Not available"}`;
+    navigator.clipboard.writeText(copyText).catch(console.error);
+    setCopiedProvider(providerId);
+    setTimeout(() => {
+      setCopiedProvider(null);
+    }, 2000);
+  };
+
   if (!agent) return null;
 
   return (
@@ -206,10 +219,26 @@ export default function BattleModeArena() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* OpenAI Column */}
                 <div className="rounded-xl border border-gray-800 bg-gray-900/30 backdrop-blur-sm flex flex-col overflow-hidden">
-                  <div className="bg-gray-900/50 border-b border-gray-800 px-4 py-3">
+                  <div className="bg-gray-900/50 border-b border-gray-800 px-4 py-3 flex items-center justify-between">
                     <span className="text-sm font-bold text-yellow-400">
                       OpenAI
                     </span>
+                    <button
+                      onClick={() => handleCopyPrompt("openai", prompts.openai)}
+                      className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-gray-800/50 transition-all duration-200"
+                    >
+                      {copiedProvider === "openai" ? (
+                        <>
+                          <Check size={14} className="text-green-400" />
+                          <span className="text-xs text-green-400">Copied</span>
+                        </>
+                      ) : (
+                        <Copy
+                          size={14}
+                          className="text-gray-400 hover:text-gray-300"
+                        />
+                      )}
+                    </button>
                   </div>
                   <div className="p-4 space-y-4">
                     <div>
@@ -235,10 +264,28 @@ export default function BattleModeArena() {
 
                 {/* Claude Column */}
                 <div className="rounded-xl border border-gray-800 bg-gray-900/30 backdrop-blur-sm flex flex-col overflow-hidden">
-                  <div className="bg-gray-900/50 border-b border-gray-800 px-4 py-3">
+                  <div className="bg-gray-900/50 border-b border-gray-800 px-4 py-3 flex items-center justify-between">
                     <span className="text-sm font-bold text-violet-400">
                       Claude
                     </span>
+                    <button
+                      onClick={() =>
+                        handleCopyPrompt("anthropic", prompts.anthropic)
+                      }
+                      className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-gray-800/50 transition-all duration-200"
+                    >
+                      {copiedProvider === "anthropic" ? (
+                        <>
+                          <Check size={14} className="text-green-400" />
+                          <span className="text-xs text-green-400">Copied</span>
+                        </>
+                      ) : (
+                        <Copy
+                          size={14}
+                          className="text-gray-400 hover:text-gray-300"
+                        />
+                      )}
+                    </button>
                   </div>
                   <div className="p-4 space-y-4">
                     <div>
@@ -264,10 +311,26 @@ export default function BattleModeArena() {
 
                 {/* Gemini Column */}
                 <div className="rounded-xl border border-gray-800 bg-gray-900/30 backdrop-blur-sm flex flex-col overflow-hidden">
-                  <div className="bg-gray-900/50 border-b border-gray-800 px-4 py-3">
+                  <div className="bg-gray-900/50 border-b border-gray-800 px-4 py-3 flex items-center justify-between">
                     <span className="text-sm font-bold text-blue-400">
                       Gemini
                     </span>
+                    <button
+                      onClick={() => handleCopyPrompt("gemini", prompts.gemini)}
+                      className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-gray-800/50 transition-all duration-200"
+                    >
+                      {copiedProvider === "gemini" ? (
+                        <>
+                          <Check size={14} className="text-green-400" />
+                          <span className="text-xs text-green-400">Copied</span>
+                        </>
+                      ) : (
+                        <Copy
+                          size={14}
+                          className="text-gray-400 hover:text-gray-300"
+                        />
+                      )}
+                    </button>
                   </div>
                   <div className="p-4 space-y-4">
                     <div>
