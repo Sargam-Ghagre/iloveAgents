@@ -112,7 +112,7 @@ export default function Sidebar({ open, onClose }) {
         </nav>
 
         {/* Footer */}
-        <div className="px-4 py-3 border-t dark:border-border border-gray-200">
+        <div className="mt-auto px-4 py-3 border-t dark:border-border border-gray-200">
           <div className="space-y-1.5">
             <a
               href="https://github.com/AditthyaSS/iloveAgents"
