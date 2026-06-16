@@ -18,6 +18,8 @@ export default function Sidebar({ open, onClose }) {
     fetchAgents()
   }, [])
 
+// Normalize the query (trim + lowercase) so matching is case-insensitive
+// and tolerant of leading/trailing whitespace in user input.
 const normalizedQuery = sidebarSearchQuery.trim().toLowerCase()
 const isSearching = normalizedQuery !== ''
 
@@ -98,6 +100,7 @@ const filteredAgents = !normalizedQuery
             <input
               type="text"
               placeholder="Search agents..."
+              aria-label="Search agents"
               value={sidebarSearchQuery}
               onChange={(e) =>
                 setSidebarSearchQuery(e.target.value)
@@ -109,7 +112,9 @@ const filteredAgents = !normalizedQuery
 
             {sidebarSearchQuery && (
               <button
+                type="button"
                 onClick={() => setSidebarSearchQuery('')}
+                aria-label="Clear search"
                 className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-text-muted dark:hover:text-text-primary transition-colors"
               >
                 <Icons.X size={14} />
