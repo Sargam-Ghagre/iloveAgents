@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { Routes, Route, Outlet } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
+import CustomCursor from './components/CustomCursor'
 import HomePage from './pages/HomePage'
 import AgentPage from './pages/AgentPage'
 import ScrollToTop from "./components/ScrollToTop";
+import ScrollToBottom from "./components/ScrollToBottom";
 import BattleModeLanding from './pages/BattleModeLanding'
 import BattleModeSetup from './pages/BattleModeSetup'
 import BattleModeArena from './pages/BattleModeArena'
@@ -22,7 +24,8 @@ function MainLayout({ sidebarOpen, setSidebarOpen }) {
     <>
       <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <main className="pt-14 lg:pl-60">
+      <CustomCursor />
+      <main className="pt-28 lg:pl-60">
         <div className="p-4 sm:p-6 lg:p-8">
           <Outlet />
         </div>
@@ -37,6 +40,7 @@ export default function App() {
   return (
     <div className="min-h-screen transition-theme dark:bg-surface bg-gray-50">
       <ScrollToTop />
+      <ScrollToBottom />
       <Routes>
         {/* Battle Mode — full-screen, own layout */}
         <Route path="/battle" element={<BattleModeLanding />} />
