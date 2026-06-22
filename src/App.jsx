@@ -17,6 +17,8 @@ import WorkflowDetail from './pages/WorkflowDetail'
 import WorkflowRunner from './pages/WorkflowRunner'
 import NotFoundPage from './pages/NotFoundPage'
 import SuitesPage from './pages/SuitesPage'
+import CollectionsPage from './pages/CollectionsPage'
+import CollectionDetailPage from './pages/CollectionDetailPage'
 import ErrorBoundary from './components/ErrorBoundary'
 
 // Shared layout: Navbar + Sidebar + main content area
@@ -56,6 +58,9 @@ export default function App() {
             <Route path="/agent/:id" element={<AgentPage />} />
             {/* Suites */}
             <Route path="/suites" element={<SuitesPage />} />
+            {/* Collections */}
+            <Route path="/collections" element={<CollectionsPage />} />
+            <Route path="/collections/:id" element={<CollectionDetailPage />} />
             {/* Workflow routes */}
             <Route path="/workflows" element={<WorkflowLibrary />} />
             <Route path="/workflows/build" element={<WorkflowBuilder />} />
