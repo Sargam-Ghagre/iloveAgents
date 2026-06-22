@@ -31,7 +31,7 @@ import { useApiKey } from "../lib/useApiKey";
 import { streamAgent } from "../lib/llmAdapter";
 import { analyseModels } from "../lib/modelAnalyser";
 import { useHistory } from "../lib/useHistory";
-import { resolveAgentModel, MODEL_MAP } from "../lib/resolveAgentModel";
+import { resolveAgentModel, MODEL_MAP, MODELS, } from "../lib/resolveAgentModel";
 import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
 
 const providerLabels = {
@@ -83,7 +83,7 @@ export default function AgentRunner({ agent }) {
   const [modelRecommendation, setModelRecommendation] = useState(null);
   const [analyserLoading, setAnalyserLoading] = useState(false);
   const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
-
+  const [showModelSwitcher, setShowModelSwitcher] = useState(false);
   const { addJob } = useScheduler();
 
   const isPromptModified = customPrompt !== agent.systemPrompt;
@@ -807,6 +807,50 @@ export default function AgentRunner({ agent }) {
               agentName={agent.name}
               systemPrompt={customPrompt}
             />
+            <div className="flex items-center gap-2 mt-3">
+  <button
+    onClick={() => setShowModelSwitcher(!showModelSwitcher)}
+    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm
+      bg-accent/10 hover:bg-accent/20 text-accent"
+  >
+    <RotateCw size={14} />
+    Try Different Model
+  </button>
+
+  <span className="text-xs text-gray-500">
+    Current: {selectedModel}
+  </span>
+</div>
+{showModelSwitcher && (
+  <div className="mt-3 p-4 border rounded-lg flex flex-wrap gap-3 items-center">
+<CustomSelect
+      value={provider}
+      onChange={setProvider}
+      options={[
+        { value: "openai", label: "OpenAI" },
+        { value: "anthropic", label: "Anthropic" },
+        { value: "gemini", label: "Gemini" },
+      ]}
+    />
+
+    <CustomSelect
+      value={selectedModel}
+      onChange={setSelectedModel}
+      options={MODELS[provider] || []}
+    />
+
+    <button
+      onClick={async () => {
+        setShowModelSwitcher(false);
+        await handleRun();
+      }}
+      className="px-4 py-2 rounded-lg bg-accent text-white"
+    >
+      Run Again
+    </button>
+
+  </div>
+)}
           </ErrorBoundary>
           <RunRating />
           <div className="flex justify-end">
