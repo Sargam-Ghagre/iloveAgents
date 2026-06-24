@@ -6,6 +6,19 @@ import SuiteWizard from '../components/SuiteWizard'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import { generateCustomSuite } from '../lib/customSuiteGenerator'
 import { useApiKey } from '../lib/useApiKey'
+
+// Map icon name string → Lucide component
+const SUITE_ICONS = {
+  Code2, BarChart3, TrendingUp, DollarSign, Palette,
+  PenLine, GraduationCap, Briefcase, HeartPulse, ShieldCheck, Gamepad2,
+}
+
+/**
+ * SuitesPage
+ *
+ * BROWSE state — shows all suite cards
+ * QUIZ state   — shows SuiteWizard for the selected suite
+ */
 export default function SuitesPage() {
   useDocumentTitle('Suites')
   const navigate = useNavigate()
