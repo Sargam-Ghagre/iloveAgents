@@ -23,7 +23,7 @@ export default function RecommendationResults({ agents = [], results = [], onRef
   return (
     <div className="space-y-4">
       <div>
-        <h2 id="recommendation-wizard-title" className="text-lg font-bold text-gray-900 dark:text-text-primary">Recommended agents for you</h2>
+        <h2 className="text-lg font-bold text-gray-900 dark:text-text-primary">Recommended agents for you</h2>
         <p className="text-xs text-gray-500 dark:text-text-secondary mt-1">Based on your goal, level, and preferences. Match reflects your answers, not agent quality.</p>
       </div>
       {!hasConfidentMatch && (

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { recommendAgents } from '../lib/agentRecommendation/scoring.js'
+import { GOAL_OPTIONS } from '../lib/agentRecommendation/constants.js'
 
 const initialPreferences = {
   primaryGoal: '',
@@ -23,7 +24,13 @@ export function useRecommendationWizard(agents = []) {
   const openWizard = () => setIsOpen(true)
   const closeWizard = () => setIsOpen(false)
   const setPreference = (key, value) => {
-    setPreferences((prev) => ({ ...prev, [key]: value }))
+    setPreferences((prev) => ({
+      ...prev,
+      [key]: value,
+      ...(key === 'primaryGoal' && {
+        categories: GOAL_OPTIONS.find((option) => option.id === value)?.categories || [],
+      }),
+    }))
     setErrors((prev) => ({ ...prev, [key]: undefined }))
   }
   const toggleExtraPreference = (id) => {

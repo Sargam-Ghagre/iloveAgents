@@ -23,5 +23,5 @@ export default function RecommendationWizardStep({ stepIndex, preferences, error
 }
 
 function StepShell({ step, title, helper, error, children }) {
-  return <div className="space-y-4"><div><p className="text-xs font-semibold uppercase tracking-wider text-accent">{step}</p><h2 id="recommendation-wizard-step-title" className="mt-1 text-lg font-bold text-gray-900 dark:text-text-primary">{title}</h2>{helper && <p id="recommendation-wizard-description" className="mt-1 text-xs text-gray-500 dark:text-text-secondary">{helper}</p>}{error && <p className="mt-2 text-xs font-medium text-red-500" role="alert">{error}</p>}</div>{children}</div>
+  return <div className="space-y-4"><div><p className="text-xs font-semibold uppercase tracking-wider text-accent">{step}</p><h2 id="recommendation-wizard-step-title" className="mt-1 text-lg font-bold text-gray-900 dark:text-text-primary">{title}</h2>{helper && <p className="mt-1 text-xs text-gray-500 dark:text-text-secondary">{helper}</p>}{error && <p className="mt-2 text-xs font-medium text-red-500" role="alert">{error}</p>}</div>{children}</div>
 }
