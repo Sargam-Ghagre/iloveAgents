@@ -244,7 +244,7 @@ export default function BattleModeArena() {
         <button
           onClick={() => navigate("/battle/setup")}
           className="flex items-center gap-1.5 text-xs font-medium
-            dark:text-text-secondary text-gray-500
+            dark:text-text-secondary text-gray-700
             hover:dark:text-text-primary hover:text-gray-900
             transition-all duration-200 hover:gap-2 mb-8"
         >
@@ -257,7 +257,7 @@ export default function BattleModeArena() {
           <h1 className="text-3xl font-extrabold tracking-wider mb-2 dark:text-text-primary text-gray-900">
             Battle Arena
           </h1>
-          <p className="text-sm dark:text-text-primary text-gray-900">
+          <p className="text-base dark:text-text-primary text-gray-900">
             Running{" "}
             <span className="dark:text-text-primary text-gray-900 font-semibold">{agent.name}</span>{" "}
             across three providers
@@ -275,13 +275,13 @@ export default function BattleModeArena() {
                   hover:border-gray-300 dark:hover:border-gray-600
                   transition-all duration-200"
           >
-            <span className="text-sm font-semibold dark:text-text-primary text-gray-900">
+            <span className="text-base font-semibold dark:text-text-primary text-gray-900">
               Prompt Comparison Viewer
             </span>
             {promptViewerOpen ? (
-              <ChevronDown size={18} className="dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500" />
+              <ChevronDown size={18} className=" dark:text-text-muted text-gray-700" />
             ) : (
-              <ChevronRight size={18} className="dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500" />
+              <ChevronRight size={18} className=" dark:text-text-muted text-gray-700" />
             )}
           </button>
 
@@ -291,7 +291,7 @@ export default function BattleModeArena() {
                 {/* OpenAI Column */}
                 <div className="rounded-xl border dark:border-border border-gray-200 dark:bg-surface-card/60 bg-white/80 backdrop-blur-sm flex flex-col overflow-hidden">
                   <div className="dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md border-b dark:border-border border-gray-200 px-4 py-3 flex items-center justify-between">
-                    <span className="text-sm font-bold text-yellow-400">
+                    <span className="text-base font-bold text-yellow-400">
                       OpenAI
                     </span>
                     <button
@@ -306,26 +306,26 @@ export default function BattleModeArena() {
                       ) : (
                         <Copy
                           size={14}
-                          className="dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 hover:text-gray-300"
+                          className=" dark:text-text-muted text-gray-700 hover:text-gray-800"
                         />
                       )}
                     </button>
                   </div>
                   <div className="p-4 space-y-4">
                     <div>
-                      <span className="text-xs font-semibold dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 uppercase tracking-wide">
+                      <span className="text-xs font-semibold dark:text-text-muted text-gray-700 uppercase tracking-wide">
                         System Prompt
                       </span>
-                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-600 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
+                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-800 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
                         {prompts.openai?.systemPrompt ||
                           "Prompt not available yet."}
                       </pre>
                     </div>
                     <div>
-                      <span className="text-xs font-semibold dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 uppercase tracking-wide">
+                      <span className="text-xs font-semibold dark:text-text-muted text-gray-700 uppercase tracking-wide">
                         User Prompt
                       </span>
-                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-600 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
+                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-800 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
                         {prompts.openai?.userMessage ||
                           "Prompt not available yet."}
                       </pre>
@@ -336,7 +336,7 @@ export default function BattleModeArena() {
                 {/* Claude Column */}
                 <div className="rounded-xl border dark:border-border border-gray-200 dark:bg-surface-card/60 bg-white/80 backdrop-blur-sm flex flex-col overflow-hidden">
                   <div className="dark:bg-surface-card bg-white border-b dark:border-border border-gray-200 px-4 py-3 flex items-center justify-between">
-                    <span className="text-sm font-bold text-violet-400">
+                    <span className="text-base font-bold text-violet-400">
                       Claude
                     </span>
                     <button
@@ -353,26 +353,26 @@ export default function BattleModeArena() {
                       ) : (
                         <Copy
                           size={14}
-                          className="dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 hover:text-gray-300"
+                          className="dark:text-text-muted text-gray-700 hover:text-gray-800"
                         />
                       )}
                     </button>
                   </div>
                   <div className="p-4 space-y-4">
                     <div>
-                      <span className="text-xs font-semibold dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 uppercase tracking-wide">
+                      <span className="text-xs font-semibold dark:text-text-muted text-gray-700 uppercase tracking-wide">
                         System Prompt
                       </span>
-                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-600 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
+                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-800 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
                         {prompts.anthropic?.systemPrompt ||
                           "Prompt not available yet."}
                       </pre>
                     </div>
                     <div>
-                      <span className="text-xs font-semibold dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 uppercase tracking-wide">
+                      <span className="text-xs font-semibold dark:text-text-muted text-gray-700 uppercase tracking-wide">
                         User Prompt
                       </span>
-                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-600 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
+                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-800 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
                         {prompts.anthropic?.userMessage ||
                           "Prompt not available yet."}
                       </pre>
@@ -383,7 +383,7 @@ export default function BattleModeArena() {
                 {/* Gemini Column */}
                 <div className="rounded-xl border dark:border-border border-gray-200 dark:bg-surface-card/60 bg-white/80 backdrop-blur-sm flex flex-col overflow-hidden">
                   <div className="dark:bg-surface-card bg-white border-b dark:border-border border-gray-200 px-4 py-3 flex items-center justify-between">
-                    <span className="text-sm font-bold text-blue-400">
+                    <span className="text-base font-bold text-blue-400">
                       Gemini
                     </span>
                     <button
@@ -398,26 +398,26 @@ export default function BattleModeArena() {
                       ) : (
                         <Copy
                           size={14}
-                          className="dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 hover:text-gray-300"
+                          className=" dark:text-text-primary text-gray-800 hover:text-gray-800"
                         />
                       )}
                     </button>
                   </div>
                   <div className="p-4 space-y-4">
                     <div>
-                      <span className="text-xs font-semibold dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 uppercase tracking-wide">
+                      <span className="text-base font-semibold dark:text-text-muted text-gray-700 uppercase tracking-wide">
                         System Prompt
                       </span>
-                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-600 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
+                      <pre className="whitespace-pre-wrap mt-2 text-base dark:text-text-secondary text-gray-800 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
                         {prompts.gemini?.systemPrompt ||
                           "Prompt not available yet."}
                       </pre>
                     </div>
                     <div>
-                      <span className="text-xs font-semibold dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 uppercase tracking-wide">
+                      <span className="text-base font-semibold dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-700 uppercase tracking-wide">
                         User Prompt
                       </span>
-                      <pre className="whitespace-pre-wrap mt-2 text-xs dark:text-text-secondary text-gray-600 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
+                      <pre className="whitespace-pre-wrap mt-2 text-base dark:text-text-secondary text-gray-800 dark:bg-surface-card dark:bg-gray-900/60 bg-white/80 backdrop-blur-md p-3 rounded-lg border dark:border-border border-gray-200">
                         {prompts.gemini?.userMessage ||
                           "Prompt not available yet."}
                       </pre>
@@ -460,7 +460,7 @@ export default function BattleModeArena() {
                   >
                     <Cpu size={16} className={prov.textColor} />
                     <span
-                      className={`text-sm font-bold ${prov.textColor} tracking-wide`}
+                      className={`text-base font-bold ${prov.textColor} tracking-wide`}
                     >
                       {prov.label}
                     </span>
@@ -473,7 +473,7 @@ export default function BattleModeArena() {
                     )}
 
                     {r.duration && (
-                      <span className="ml-auto text-[11px] dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 font-medium">
+                      <span className="ml-auto text-[11px] dark:text-text-muted text-gray-700 font-medium">
                         {(r.duration / 1000).toFixed(1)}s
                       </span>
                     )}
@@ -487,7 +487,7 @@ export default function BattleModeArena() {
                           size={28}
                           className={`animate-spin ${prov.loaderColor}`}
                         />
-                        <span className="text-xs dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 font-medium">
+                        <span className="text-xs dark:text-text-muted dark:text-text-muted text-gray-700 font-medium">
                           {isStillFighting
                             ? "Still fighting..."
                             : `${prov.label} is generating...`}
@@ -508,14 +508,14 @@ export default function BattleModeArena() {
                         <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/20">
                           <AlertCircle size={24} className="text-red-400" />
                         </div>
-                        <p className="text-xs dark:text-text-secondary dark:text-text-muted dark:text-text-muted text-gray-500 max-w-xs font-medium">
+                        <p className="text-xs dark:text-text-muted text-gray-700 max-w-xs font-medium">
                           {r.error}
                         </p>
                       </div>
                     )}
 
                     {r.content && (
-                      <div className="markdown-output text-sm dark:text-text-primary text-gray-900 leading-relaxed">
+                      <div className="markdown-output text-base dark:text-text-primary text-gray-900 leading-relaxed">
                         {agent.outputType === "markdown" ? (
                           <ReactMarkdown remarkPlugins={[remarkGfm]}>
                             {r.content}
