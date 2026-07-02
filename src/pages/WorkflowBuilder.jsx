@@ -180,7 +180,7 @@ export default function WorkflowBuilder() {
     onChange={(e) => setDescription(e.target.value)}
     placeholder="What does this workflow do?"
     rows={2}
-    className="w-full px-3 py-2.5 rounded-lg border text-sm transition-all resize-none
+   className="w-full px-3 pr-10 py-2.5 rounded-lg border text-sm transition-all resize-none
       dark:bg-surface-card dark:border-border dark:text-text-primary dark:placeholder-text-muted
       bg-white border-gray-200 text-gray-900 placeholder-gray-400
       focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50"
