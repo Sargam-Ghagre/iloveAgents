@@ -70,9 +70,7 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/agent/:id" element={<AgentPage />} />
-
               <Route path="/suites" element={<SuitesPage />} />
-
               <Route path="/collections" element={<CollectionsPage />} />
               <Route path="/collections/:id" element={<CollectionDetailPage />} />
 
@@ -88,6 +86,7 @@ export default function App() {
             <Route path="/battle/setup" element={<BattleModeSetup />} />
             <Route path="/battle/arena" element={<BattleModeArena />} />
             <Route path="/battle/winner" element={<BattleModeWinner />} />
+
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>
