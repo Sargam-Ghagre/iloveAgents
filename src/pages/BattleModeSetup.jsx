@@ -129,24 +129,32 @@ function InputField({ input, value, onChange }) {
       onChange(input.id, next);
     };
     return (
-      <div className="flex flex-wrap gap-2">
-        {input.options.map((opt) => {
-          const active = selected.includes(opt);
-          return (
-            <button
-              key={opt}
-              type="button"
-              onClick={() => toggle(opt)}
-              className={`px-3 py-1 rounded-full text-xs font-medium border transition-all duration-150
-                ${active
-                  ? "bg-yellow-400/20 border-yellow-400/60 text-yellow-300"
-                  : "bg-gray-800/60 border-gray-700 dark:text-text-muted text-gray-500 hover:border-gray-500 hover:text-gray-300"
-                }`}
-            >
-              {opt}
-            </button>
-          );
-        })}
+      <div>
+        <div className="flex flex-wrap gap-2">
+          {input.options.map((opt) => {
+            const active = selected.includes(opt);
+            return (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => toggle(opt)}
+                className={`px-3 py-1 rounded-full text-xs font-medium border transition-all duration-150
+                  ${active
+                    ? "bg-yellow-400/20 border-yellow-400/60 text-yellow-300"
+                    : "bg-gray-800/60 border-gray-700 dark:text-text-muted text-gray-500 hover:border-gray-500 hover:text-gray-300"
+                  }`}
+              >
+                {opt}
+              </button>
+            );
+          })}
+        </div>
+        {!validation.valid && (
+          <div className="flex items-center gap-2 mt-1 text-xs text-red-400">
+            <AlertCircle size={12} />
+            {validation.error}
+          </div>
+        )}
       </div>
     );
   }
@@ -257,14 +265,13 @@ export default function BattleModeSetup() {
     apiKeys.anthropic.trim() &&
     apiKeys.gemini.trim() &&
     selectedAgent.inputs?.every((inp) => {
+      const val = inputs[inp.id];
       if (!inp.required) {
         // For optional fields, if there's a value, it must be valid
-        const val = inputs[inp.id];
         if (!val || (Array.isArray(val) && val.length === 0)) return true;
         return validateInput(inp, val).valid;
       }
       // For required fields, must have value and pass validation
-      const val = inputs[inp.id];
       if (Array.isArray(val)) return val.length > 0 && validateInput(inp, val).valid;
       const hasValue = val && String(val).trim().length > 0;
       return hasValue && validateInput(inp, val).valid;
